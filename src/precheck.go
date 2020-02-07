@@ -18,6 +18,7 @@ func checkTemplates() error {
 	if err != nil {
 		return err
 	}
+
 	// 检查 layouts
 	err = isExist("./templates/layouts", true)
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 )
 
 type Page struct {
+	Tpl         *template.Template
 	Title       string
 	RawMarkdown []byte
 	FileName    string
@@ -23,8 +24,9 @@ func (r *Render) NewPage(fileName string, markDownPath string) Page {
 	if markDownPath != "" {
 		// TODO 读取 Markdown
 	}
-
+	tpl := template.New(fileName).Funcs(r.FunctionMaps)
 	return Page{
+		Tpl:         tpl,
 		Title:       "",
 		RawMarkdown: nil,
 		FileName:    fileName,
@@ -37,12 +39,14 @@ func (r *Render) NewPage(fileName string, markDownPath string) Page {
 }
 
 func (p *Page) Render() ([]byte, error) {
-	tpl, err := template.ParseFiles(append([]string{"./templates/"+p.FileName}, p.Layouts...)...)
-	if err != nil{
+	tpl, err := p.Tpl.ParseFiles(append([]string{"./templates/" + p.FileName}, p.Layouts...)...)
+	if err != nil {
 		return nil, err
 	}
+
 	var wr bytes.Buffer
 	p.Params["Title"] = p.Title // 设置标题
+
 	err = tpl.Execute(&wr, p.Params)
 	if err != nil {
 		return nil, err
@@ -55,10 +59,12 @@ func (p *Page) Save() error {
 	// 解析 URL
 	path, name := filepath.Split(p.URL)
 	p.OutputName = name
+
 	path, err := filepath.Abs("./public/" + path) // 转换为绝对路径
 	if err != nil {
 		return err
 	}
+
 	if _, err = os.Stat(path); err != nil {
 		err = os.MkdirAll(path, os.ModePerm) // 创建文件夹
 		if err != nil {
