@@ -2,7 +2,7 @@ package main
 
 import "github.com/BurntSushi/toml"
 
-func (s *stw) loadConfig() {
+func (s *stw) LoadConfig() {
 	c := new(config)
 	_, err := toml.DecodeFile("./data/config.toml", &c)
 	if err != nil {

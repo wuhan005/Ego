@@ -1,12 +1,8 @@
 .profile-img{
-    width: 100%;
-    display: block;
-    left: 46%;
     margin: 0px 50px;
     top: -70px;
     overflow: hidden;
-    border-radius: 500px;
-    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.10);
     padding: 5px;
     border-radius: 200px;
     height: 120px;

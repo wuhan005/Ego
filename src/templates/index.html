@@ -1,3 +1,18 @@
 {{ template "header" . }}
-{{ template "profile" . }}
+<div style="width: 100%;">
+    <div class="col-24" style="width: 100%;">
+        {{ template "profile" . }}
+    </div>
+    <br>
+    <div class="col-24">
+        <at-card class="at-card--no-hover" style="width: 100%;" :bordered="false" :noHover="true">
+            <h4 slot="title">John's Projects</h4>
+            <div>
+
+            </div>
+        </at-card>
+    </div>
+</div>
+
+
 {{ template "footer" . }}

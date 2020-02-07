@@ -1,15 +1,15 @@
 {{ define "profile" }}
-    <at-card style="width: 100%;" :bordered="false">
-        <div class="row at-row no-gutter flex-middle">
-            <div class="col-md-4">
-                <img class="profile-img" src="{{ .Avatar }}"/>
-            </div>
-            <div class="col-md-12">
-                <h1>{{ .NickName }}</h1>
-                <p><a href="{{ .Site }}">{{ .Site }}</a></p>
-                <br>
-                <p>{{ .Intro | unescaped }}</p>
-            </div>
+<at-card style="width: 100%;" :bordered="false">
+    <div class="row at-row no-gutter flex-middle">
+        <div class="col-md-4">
+            <img class="profile-img" src="{{ .Avatar }}"/>
         </div>
-    </at-card>
+        <div class="col-md-12">
+            <h1>{{ .NickName }}</h1>
+            <p><a href="{{ .Site }}">{{ .Site }}</a></p>
+            <br>
+            <p>{{ .Intro | unescaped }}</p>
+        </div>
+    </div>
+</at-card>
 {{ end }}
