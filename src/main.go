@@ -5,13 +5,13 @@ import "github.com/spf13/afero"
 var fs afero.Fs
 func main() {
 	fs = afero.NewOsFs()
-	stw := new(stw)
+	ego := new(ego)
 
-	stw.check()
-	stw.LoadConfig()
+	ego.check()
+	ego.LoadConfig()
 
-	stw.LoadProject()
-	stw.Render = new(Render)
-	stw.Render.GlobalConfig = stw.Config
-	stw.Render.Init()
+	ego.LoadProject()
+	ego.Render = new(Render)
+	ego.Render.GlobalConfig = ego.Config
+	ego.Render.Init()
 }

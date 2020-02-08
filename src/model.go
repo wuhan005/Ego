@@ -1,6 +1,6 @@
 package main
 
-type stw struct {
+type ego struct {
 	Config *config
 	Render *Render
 }

@@ -1,4 +1,4 @@
-module stw
+module Ego
 
 go 1.13
 

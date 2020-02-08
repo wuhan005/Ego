@@ -14,6 +14,8 @@ type Project struct {
 	Name        string   `yaml:"name"`
 	Link        string   `yaml:"link"`
 	Slogan      string   `yaml:"slogan"`
+	Status      string   `yaml:"status"`
+	Logo        string   `yaml:"logo"`
 	Description string   `yaml:"description"`
 	Languages   []string `yaml:"language"`
 	Tags        []string `yaml:"tags"`
@@ -24,7 +26,7 @@ type Project struct {
 	Content string       // 正文
 }
 
-func (s *stw) LoadProject() error {
+func (e *ego) LoadProject() error {
 	projectList, err := ioutil.ReadDir("./data/project")
 	if err != nil {
 		return err

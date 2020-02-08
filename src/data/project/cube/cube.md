@@ -2,6 +2,8 @@
 name: "Cube"
 link: "https://github.com/wuhan005/Cube"
 slogan: "Create everything you like!"
+status: ""
+logo: ""
 description: ""
 language:
   - "PHP"

@@ -4,7 +4,7 @@ import (
 	"log"
 )
 
-func (s *stw) check() {
+func (e *ego) check() {
 	err := checkTemplates()
 	if err != nil {
 		panic(err)
