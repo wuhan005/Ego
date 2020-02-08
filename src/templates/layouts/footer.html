@@ -1,7 +1,11 @@
 {{ define "footer"}}
     </div>
     <script>
-        new Vue({el: '#app'})
+        new Vue({
+            el: '#app',
+            // created(){ this.$Loading.start() },
+            // mounted(){ this.$Loading.finish() }
+        })
     </script>
 </body>
 </html>

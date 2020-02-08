@@ -1,4 +1,4 @@
-.profile-img{
+.profile-img {
     margin: 0px 50px;
     top: -70px;
     overflow: hidden;
@@ -9,4 +9,10 @@
     max-width: none;
     width: 120px;
     vertical-align: middle;
+}
+
+.card {
+    margin-bottom: 20px;
+    width: 100%;
+    /*margin: 8px;*/
 }

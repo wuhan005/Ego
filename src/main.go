@@ -17,8 +17,8 @@ func main() {
 	ego.LoadProject() // 加载项目配置
 	ego.Render = NewRender(ego.Config, ego.Projects)
 	ego.Render.Init()
-	fmt.Println(ego.Render.RenderProjects()) // 渲染项目
+	ego.Render.RenderProjects() // 渲染项目
 
-	ego.Render.RenderIndex() // 渲染主页
+	fmt.Println(ego.Render.RenderIndex()) // 渲染主页
 
 }

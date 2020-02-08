@@ -3,7 +3,7 @@ name: "Cube"
 link: "https://github.com/wuhan005/Cube"
 slogan: "Create everything you like!"
 status: ""
-logo: ""
+logo: "/assets/image/Cube_logo.png"
 description: ""
 language:
   - "PHP"

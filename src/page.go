@@ -24,7 +24,7 @@ type Page struct {
 
 func (r *Render) NewPage(fileName string, templateName string, rawMarkdown []byte) Page {
 	// 若文件名无后缀，加上后缀
-	if !strings.HasSuffix(fileName, ".html") || !strings.HasSuffix(fileName, ".htm") {
+	if !strings.HasSuffix(fileName, ".html") && !strings.HasSuffix(fileName, ".htm") {
 		fileName += ".html"
 	}
 	// 若没有指定模板名，则默认与文件名相同

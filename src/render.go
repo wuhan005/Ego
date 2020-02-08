@@ -67,6 +67,7 @@ func (r *Render) RenderIndex() error {
 	indexPage.Params["NickName"] = r.GlobalConfig.Profile.NickName
 	indexPage.Params["Site"] = r.GlobalConfig.Profile.Site
 	indexPage.Params["Intro"] = r.GlobalConfig.Profile.Intro
+	indexPage.Params["Projects"] = r.Projects
 
 	_, err := indexPage.Render()
 	if err != nil {
