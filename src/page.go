@@ -6,40 +6,48 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type Page struct {
-	Tpl         *template.Template
-	Title       string
-	RawMarkdown []byte
-	FileName    string
-	Layouts     []string               // Render 预制 Layouts
-	Params      map[string]interface{} // 绑定变量
-	Content     []byte
-	URL         string
-	OutputName  string
+	Tpl          *template.Template
+	Title        string
+	RawMarkdown  []byte
+	TemplateName string
+	FileName     string
+	Layouts      []string               // Render 预制 Layouts
+	Params       map[string]interface{} // 绑定变量
+	Content      []byte
+	URL          string
+	OutputName   string
 }
 
-func (r *Render) NewPage(fileName string, markDownPath string) Page {
-	if markDownPath != "" {
-		// TODO 读取 Markdown
+func (r *Render) NewPage(fileName string, templateName string, rawMarkdown []byte) Page {
+	// 若文件名无后缀，加上后缀
+	if !strings.HasSuffix(fileName, ".html") || !strings.HasSuffix(fileName, ".htm") {
+		fileName += ".html"
 	}
-	tpl := template.New(fileName).Funcs(r.FunctionMaps)
+	// 若没有指定模板名，则默认与文件名相同
+	if templateName == "" {
+		templateName = fileName
+	}
+	tpl := template.New(templateName).Funcs(r.FunctionMaps)
 	return Page{
-		Tpl:         tpl,
-		Title:       "",
-		RawMarkdown: nil,
-		FileName:    fileName,
-		Layouts:     r.LayoutsFile,
-		Params:      map[string]interface{}{},
-		Content:     []byte{}, // 文件内容
-		URL:         "",
-		OutputName:  "",
+		Tpl:          tpl,
+		Title:        "",
+		RawMarkdown:  rawMarkdown,
+		TemplateName: templateName,
+		FileName:     fileName,
+		Layouts:      r.LayoutsFile,
+		Params:       map[string]interface{}{},
+		Content:      []byte{}, // 文件内容
+		URL:          "",
+		OutputName:   "",
 	}
 }
 
 func (p *Page) Render() ([]byte, error) {
-	tpl, err := p.Tpl.ParseFiles(append([]string{"./templates/" + p.FileName}, p.Layouts...)...)
+	tpl, err := p.Tpl.ParseFiles(append([]string{"./templates/" + p.TemplateName}, p.Layouts...)...)
 	if err != nil {
 		return nil, err
 	}

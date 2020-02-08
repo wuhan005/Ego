@@ -7,10 +7,14 @@ import (
 	"strings"
 )
 
-type Projects []Project
-
 type Project struct {
 	PathName    string
+	Content string       // 正文
+
+	Meta
+}
+
+type Meta struct {
 	Name        string   `yaml:"name"`
 	Link        string   `yaml:"link"`
 	Slogan      string   `yaml:"slogan"`
@@ -23,7 +27,6 @@ type Project struct {
 		Version string `yaml:"version"`
 		Percent uint   `yaml:"percent"`
 	} `yaml:"progress"`
-	Content string       // 正文
 }
 
 func (e *ego) LoadProject() error {
@@ -31,9 +34,9 @@ func (e *ego) LoadProject() error {
 	if err != nil {
 		return err
 	}
-
+	e.Projects = make([]Project, 0)
 	for _, project := range projectList {
-		NewProject(project.Name())
+		e.Projects = append(e.Projects, NewProject(project.Name()))
 	}
 
 	return nil
@@ -55,7 +58,7 @@ func (p *Project) ParseMeta() {
 	p.Content = metaSlice[2]
 
 	meta := metaSlice[1]
-	err = yaml.Unmarshal([]byte(meta), &p)
+	err = yaml.Unmarshal([]byte(meta), &p.Meta)
 	if err != nil {
 		panic(err)
 	}

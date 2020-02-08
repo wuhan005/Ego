@@ -1,8 +1,9 @@
 package main
 
 type ego struct {
-	Config *config
-	Render *Render
+	Config   *config
+	Render   *Render
+	Projects []Project		// 获取到的所有项目
 }
 
 type config struct {
