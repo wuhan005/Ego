@@ -22,6 +22,7 @@ type Meta struct {
 	Link        string   `yaml:"link"`
 	Slogan      string   `yaml:"slogan"`
 	Status      int      `yaml:"status"`
+	Try         string   `yaml:"try"`
 	Logo        string   `yaml:"logo"`
 	Description string   `yaml:"description"`
 	Languages   []string `yaml:"language"`

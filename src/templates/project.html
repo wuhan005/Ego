@@ -29,9 +29,17 @@
                             {{ range $tag := .Tags }}
                                 <at-tag color="default">{{ $tag }}</at-tag>
                             {{ end }}
+
                         </div>
                         <div class="col-md-8">
                             {{ .Progress.Version }} 开发进度： <at-progress :percent="{{ .Progress.Percent }}" :stroke-width="4"></at-progress>
+                            <br><br>
+                            {{ if ne .Try "" }}
+                            <!-- 立即体验 -->
+                            <a href="{{ .Try }}" target="_blank">
+                                <at-alert message="{{ .Name }} 现已上线，您可以立即体验！" description="{{ .Try }}" type="success" show-icon></at-alert>
+                            </a>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
