@@ -42,7 +42,7 @@
     <div class="col-24">
         <at-tabs :animated="false">
             <at-tab-pane label="项目介绍" name="intro">
-                <p></p>
+                <div class="markdown-body">{{ .IntroHTML | unescaped }}</div>
             </at-tab-pane>
             <at-tab-pane label="更新记录" name="history">
                 <at-timeline>

@@ -4,11 +4,14 @@
         <div class="col-md-4">
             <img class="profile-img" src="{{ .Avatar }}"/>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h1>{{ .NickName }}</h1>
             <p><a href="{{ .Site }}">{{ .Site }}</a></p>
             <br>
             <p>{{ .Intro | unescaped }}</p>
+        </div>
+        <div class="col-md-12">
+            <img height="80px" src="https://ghchart.rshah.org/wuhan005"/>
         </div>
     </div>
 </at-card>

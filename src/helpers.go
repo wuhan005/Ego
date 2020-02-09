@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"github.com/spf13/afero"
+	"gopkg.in/russross/blackfriday.v2"
 	"io"
 	"io/ioutil"
 	"os"
@@ -90,4 +91,9 @@ func CopyDir(fs afero.Fs, from, to string, shouldCopy func(filename string) bool
 	}
 
 	return nil
+}
+
+func ParseMarkdown(content string) string {
+	output := blackfriday.Run([]byte(content))
+	return string(output)
 }

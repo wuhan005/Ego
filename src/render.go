@@ -122,6 +122,7 @@ func (r *Render) renderProject(project Project) error {
 	mainPage.Params["SiteName"] = r.GlobalConfig.Site.Title
 	mainPage.Params["History"] = project.History
 	mainPage.Params["HistoryKey"] = project.HistoryKey
+	mainPage.Params["IntroHTML"] = ParseMarkdown(project.Content)
 
 	_, err := mainPage.Render()
 	if err != nil {
