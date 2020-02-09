@@ -118,6 +118,9 @@ func (r *Render) renderProject(project Project) error {
 		mainPage.Params[key] = value
 	}
 
+	mainPage.Params["History"] = project.History
+	mainPage.Params["HistoryKey"] = project.HistoryKey
+
 	_, err := mainPage.Render()
 	if err != nil {
 		return err

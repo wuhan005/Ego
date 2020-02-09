@@ -6,18 +6,48 @@
                 <div class="col-md-6">
                     <img src="{{ .Logo }}" width="250px"/>
                 </div>
-                <div class="col-md-10">
-                    <h1>{{ .Name }}</h1>
-                    <p></p>
-                    <p></p>
-                    <p></p>
+                <div class="col-md-18">
+                    <div class="row at-row no-gutter">
+                        <div class="col-md-16">
+                            <h1>{{ .Name }}</h1>
+                            {{ range $language := .Languages }}
+                                <at-badge value="{{ $language }}" status="info"></at-badge>
+                            {{ end }}
+                            <p>{{ .Slogan }}</p>
+                            <br>
+                            <p>{{ .Description }}</p>
+                            <br>
+                            {{ range $tag := .Tags }}
+                                <at-tag color="default">{{ $tag }}</at-tag>
+                            {{ end }}
+                        </div>
+                        <div class="col-md-8">
+                            {{ .Progress.Version }} <at-progress :percent="{{ .Progress.Percent }}" :stroke-width="4"></at-progress>
+                        </div>
+                    </div>
                 </div>
             </div>
         </at-card>
     </div>
     <br>
     <div class="col-24">
-
+        <at-tabs :animated="false">
+            <at-tab-pane label="项目介绍" name="intro">
+                <p></p>
+            </at-tab-pane>
+            <at-tab-pane label="更新记录" name="history">
+                <at-timeline>
+                    {{ range $intro := .HistoryKey }}
+                        <at-timeline-item>
+                            <p>{{ $intro }}</p>
+                            {{ range $item := index $.History $intro }}
+                                <p>{{ $item }}</p>
+                            {{ end }}
+                        </at-timeline-item>
+                    {{ end }}
+                </at-timeline>
+            </at-tab-pane>
+        </at-tabs>
     </div>
 </div>
 {{ template "footer" . }}

@@ -4,7 +4,7 @@ link: "https://github.com/wuhan005/Cube"
 slogan: "Create everything you like!"
 status: ""
 logo: "/assets/image/Cube_logo.png"
-description: ""
+description: "Cube 可以让你创建一个个小工具"
 language:
   - "PHP"
 tags:
