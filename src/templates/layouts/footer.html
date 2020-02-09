@@ -1,10 +1,14 @@
 {{ define "footer"}}
+        </div>
     </div>
     <script>
         new Vue({
             el: '#app',
-            // created(){ this.$Loading.start() },
-            // mounted(){ this.$Loading.finish() }
+            methods:{
+                selectMenu(data){
+                    window.location.href = data
+                }
+            },
         })
     </script>
 </body>

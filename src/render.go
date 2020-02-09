@@ -62,7 +62,8 @@ func (r *Render) LoadFunctions() error {
 func (r *Render) RenderIndex() error {
 	indexPage := r.NewPage("index.html", "", nil)
 
-	indexPage.Title = "John's Projects"
+	indexPage.Title = r.GlobalConfig.Site.Title
+	indexPage.Params["SiteName"] = r.GlobalConfig.Site.Title
 	indexPage.Params["Avatar"] = r.GlobalConfig.Profile.Avatar
 	indexPage.Params["NickName"] = r.GlobalConfig.Profile.NickName
 	indexPage.Params["Site"] = r.GlobalConfig.Profile.Site
@@ -107,7 +108,7 @@ func (r *Render) RenderProjects() error {
 func (r *Render) renderProject(project Project) error {
 	mainPage := r.NewPage(project.Name, "project.html", []byte(project.Content))
 
-	mainPage.Title = fmt.Sprintf("%s - John's Project", project.Meta.Name)
+	mainPage.Title = fmt.Sprintf("%s - %s", project.Meta.Name, r.GlobalConfig.Site.Title)
 
 	metaType := reflect.TypeOf(project.Meta)
 	metaValue := reflect.ValueOf(project.Meta)
@@ -118,6 +119,7 @@ func (r *Render) renderProject(project Project) error {
 		mainPage.Params[key] = value
 	}
 
+	mainPage.Params["SiteName"] = r.GlobalConfig.Site.Title
 	mainPage.Params["History"] = project.History
 	mainPage.Params["HistoryKey"] = project.HistoryKey
 

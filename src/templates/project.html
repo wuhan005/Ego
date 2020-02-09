@@ -1,7 +1,7 @@
 {{ template "header" . }}
 <div style="width: 100%;">
     <div class="col-24" style="width: 100%;">
-        <at-card style="width: 100%;" :bordered="false">
+        <at-card style="width: 100%;" :bordered="false" :no-hover="true">
             <div class="row at-row no-gutter flex-middle">
                 <div class="col-md-6">
                     <img src="{{ .Logo }}" width="250px"/>
@@ -10,6 +10,15 @@
                     <div class="row at-row no-gutter">
                         <div class="col-md-16">
                             <h1>{{ .Name }}</h1>
+
+                            {{ if eq .Status -1 }}
+                                <at-tag color="default" style="float: right; margin-right: 20px;">已弃坑</at-tag>
+                            {{ else if eq .Status 0 }}
+                                <at-tag color="primary" style="float: right; margin-right: 20px;">开发中...</at-tag>
+                            {{ else if eq .Status 1 }}
+                                <at-tag color="success" style="float: right; margin-right: 20px;">已上线</at-tag>
+                            {{ end }}
+
                             {{ range $language := .Languages }}
                                 <at-badge value="{{ $language }}" status="info"></at-badge>
                             {{ end }}
@@ -22,7 +31,7 @@
                             {{ end }}
                         </div>
                         <div class="col-md-8">
-                            {{ .Progress.Version }} <at-progress :percent="{{ .Progress.Percent }}" :stroke-width="4"></at-progress>
+                            {{ .Progress.Version }} 开发进度： <at-progress :percent="{{ .Progress.Percent }}" :stroke-width="4"></at-progress>
                         </div>
                     </div>
                 </div>

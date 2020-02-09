@@ -3,11 +3,16 @@ package main
 type ego struct {
 	Config   *config
 	Render   *Render
-	Projects []Project		// 获取到的所有项目
+	Projects []Project // 获取到的所有项目
 }
 
 type config struct {
+	Site    site    `toml:"site"`
 	Profile profile `toml:"profile"`
+}
+
+type site struct {
+	Title string `toml:"title"`
 }
 
 type profile struct {

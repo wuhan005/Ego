@@ -6,7 +6,7 @@
     <br>
     <div class="col-24">
         <at-card class="at-card--no-hover" style="width: 100%;" :bordered="false" :noHover="true">
-            <h4 slot="title">John's Projects</h4>
+            <h4 slot="title">{{ .SiteName }}</h4>
             <div class="row at-row">
                 {{ range $project := .Projects }}
                 <div class="card col-xs-24 col-md-6">
