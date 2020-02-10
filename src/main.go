@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/spf13/afero"
 )
 
@@ -19,9 +18,8 @@ func main() {
 
 	ego.Render = ego.NewRender(ego.Config, ego.Projects)
 	ego.Render.Init()
-	fmt.Println(ego.Render.RenderLanguage())
+	ego.Render.RenderLanguage()
 	ego.Render.RenderProjects() // 渲染项目
 	ego.Render.RenderAbout()	// 关于页面
 	ego.Render.RenderIndex() // 渲染主页
-
 }
