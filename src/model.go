@@ -4,6 +4,7 @@ type ego struct {
 	Config   *config
 	Render   *Render
 	Projects []Project // 获取到的所有项目
+	Language *Language
 }
 
 type config struct {

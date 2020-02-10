@@ -16,12 +16,14 @@ type Render struct {
 	Tmpl         *template.Template
 	LayoutsFile  []string
 	FunctionMaps template.FuncMap
+	Language     *Language
 }
 
-func NewRender(config *config, projects []Project) *Render {
+func (e *ego) NewRender(config *config, projects []Project) *Render {
 	r := new(Render)
 	r.GlobalConfig = config
 	r.Projects = projects
+	r.Language = e.Language
 	return r
 }
 
@@ -55,6 +57,7 @@ func (r *Render) LoadLayouts() error {
 func (r *Render) LoadFunctions() error {
 	r.FunctionMaps = template.FuncMap{
 		"unescaped": unescaped,
+		"count": count,
 	}
 	return nil
 }
@@ -63,11 +66,6 @@ func (r *Render) RenderIndex() error {
 	indexPage := r.NewPage("index.html", "", nil)
 
 	indexPage.Title = r.GlobalConfig.Site.Title
-	indexPage.Params["SiteName"] = r.GlobalConfig.Site.Title
-	indexPage.Params["Avatar"] = r.GlobalConfig.Profile.Avatar
-	indexPage.Params["NickName"] = r.GlobalConfig.Profile.NickName
-	indexPage.Params["Site"] = r.GlobalConfig.Profile.Site
-	indexPage.Params["Intro"] = r.GlobalConfig.Profile.Intro
 	indexPage.Params["Projects"] = r.Projects
 
 	_, err := indexPage.Render()
@@ -119,7 +117,6 @@ func (r *Render) renderProject(project Project) error {
 		mainPage.Params[key] = value
 	}
 
-	mainPage.Params["SiteName"] = r.GlobalConfig.Site.Title
 	mainPage.Params["History"] = project.History
 	mainPage.Params["HistoryKey"] = project.HistoryKey
 	mainPage.Params["IntroHTML"] = ParseMarkdown(project.Content)

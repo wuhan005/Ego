@@ -43,6 +43,11 @@ func (e *ego) LoadProject() error {
 		e.Projects = append(e.Projects, NewProject(project.Name()))
 	}
 
+	// 初始化项目编程语言信息
+	for _, project := range e.Projects {
+		e.Language.AddProject(&project)
+	}
+
 	return nil
 }
 

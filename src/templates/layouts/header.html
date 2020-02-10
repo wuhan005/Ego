@@ -12,6 +12,12 @@
         <div  class="container">
             <at-menu mode="horizontal" active-name="1" @on-select="selectMenu">
                 <at-menu-item name="/"><i class="icon icon-home"></i>{{ .SiteName }}</at-menu-item>
-                <at-menu-item name="/about"><i class="icon icon-settings"></i>关于</at-menu-item>
+                <at-submenu>
+                    <template slot="title"><i class="icon icon-grid"></i>语言</template>
+                    {{ range $lang, $ := .Languages }}
+                        <at-menu-item name="/language/{{ $lang }}">{{ $lang }}</at-menu-item>
+                    {{ end }}
+                </at-submenu>
+                <at-menu-item name="/about"><i class="icon icon-user"></i>关于</at-menu-item>
             </at-menu>
 {{ end }}

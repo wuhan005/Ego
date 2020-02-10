@@ -32,6 +32,17 @@ func (r *Render) NewPage(fileName string, templateName string, rawMarkdown []byt
 		templateName = fileName
 	}
 	tpl := template.New(templateName).Funcs(r.FunctionMaps)
+
+	// 公共参数
+	params := make(map[string]interface{})
+	params["SiteName"] = r.GlobalConfig.Site.Title
+	params["Languages"] = r.Language.List
+	// 个人信息
+	params["Avatar"] = r.GlobalConfig.Profile.Avatar
+	params["NickName"] = r.GlobalConfig.Profile.NickName
+	params["Site"] = r.GlobalConfig.Profile.Site
+	params["Intro"] = r.GlobalConfig.Profile.Intro
+
 	return Page{
 		Tpl:          tpl,
 		Title:        "",
@@ -39,7 +50,7 @@ func (r *Render) NewPage(fileName string, templateName string, rawMarkdown []byt
 		TemplateName: templateName,
 		FileName:     fileName,
 		Layouts:      r.LayoutsFile,
-		Params:       map[string]interface{}{},
+		Params:       params,
 		Content:      []byte{}, // 文件内容
 		URL:          "",
 		OutputName:   "",
