@@ -1,0 +1,16 @@
+{{ template "header" . }}
+<div class="col-24">
+    <at-card class="at-card--no-hover" style="width: 100%;" :bordered="false" :noHover="true">
+        <div style="text-align: center;">
+            <h1 slot="title">关于 {{ .SiteName }}</h1>
+        </div>
+
+        <div class="row at-row">
+            <div class="markdown-body">
+                {{ .about | unescaped }}
+            </div>
+        </div>
+    </at-card>
+</div>
+
+{{ template "footer" . }}

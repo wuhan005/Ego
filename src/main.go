@@ -21,7 +21,7 @@ func main() {
 	ego.Render.Init()
 	fmt.Println(ego.Render.RenderLanguage())
 	ego.Render.RenderProjects() // 渲染项目
-
+	ego.Render.RenderAbout()	// 关于页面
 	ego.Render.RenderIndex() // 渲染主页
 
 }
