@@ -16,7 +16,7 @@ func main() {
 
 	ego.LoadProject() // 加载项目配置
 
-	ego.Render = ego.NewRender(ego.Config, ego.Projects)
+	ego.Render = ego.NewRender()
 	ego.Render.Init()
 	ego.Render.RenderLanguage()
 	ego.Render.RenderProjects() // 渲染项目

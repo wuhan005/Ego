@@ -11,19 +11,15 @@ import (
 )
 
 type Render struct {
-	GlobalConfig *config
-	Projects     []Project
+	Ego          *ego
 	Tmpl         *template.Template
 	LayoutsFile  []string
 	FunctionMaps template.FuncMap
-	Language     *Language
 }
 
-func (e *ego) NewRender(config *config, projects []Project) *Render {
+func (e *ego) NewRender() *Render {
 	r := new(Render)
-	r.GlobalConfig = config
-	r.Projects = projects
-	r.Language = e.Language
+	r.Ego = e
 	return r
 }
 
@@ -57,7 +53,7 @@ func (r *Render) LoadLayouts() error {
 func (r *Render) LoadFunctions() error {
 	r.FunctionMaps = template.FuncMap{
 		"unescaped": unescaped,
-		"count": count,
+		"count":     count,
 	}
 	return nil
 }
@@ -65,8 +61,8 @@ func (r *Render) LoadFunctions() error {
 func (r *Render) RenderIndex() error {
 	indexPage := r.NewPage("index.html", "", nil)
 
-	indexPage.Title = r.GlobalConfig.Site.Title
-	indexPage.Params["Projects"] = r.Projects
+	indexPage.Title = r.Ego.Config.Site.Title
+	indexPage.Params["Projects"] = r.Ego.Projects
 
 	_, err := indexPage.Render()
 	if err != nil {
@@ -94,7 +90,7 @@ func (r *Render) RenderProjects() error {
 		return err
 	}
 
-	for _, project := range r.Projects {
+	for _, project := range r.Ego.Projects {
 		err = r.renderProject(project)
 		if err != nil {
 			return err
@@ -106,7 +102,7 @@ func (r *Render) RenderProjects() error {
 func (r *Render) renderProject(project Project) error {
 	mainPage := r.NewPage(project.Name, "project.html", []byte(project.Content))
 
-	mainPage.Title = fmt.Sprintf("%s - %s", project.Meta.Name, r.GlobalConfig.Site.Title)
+	mainPage.Title = fmt.Sprintf("%s - %s", project.Meta.Name, r.Ego.Config.Site.Title)
 
 	metaType := reflect.TypeOf(project.Meta)
 	metaValue := reflect.ValueOf(project.Meta)

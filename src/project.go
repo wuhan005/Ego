@@ -45,7 +45,7 @@ func (e *ego) LoadProject() error {
 
 	// 初始化项目编程语言信息
 	for _, project := range e.Projects {
-		e.Language.AddProject(&project)
+		e.Language.AddProject(project)
 	}
 
 	return nil
