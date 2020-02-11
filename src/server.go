@@ -14,9 +14,9 @@ func (e *ego) DoServer(port string){
 	}
 
 	http.Handle("/", http.FileServer(http.Dir("./public/")))
+	log.Println("HTTP server runs on ", port)
 	err := http.ListenAndServe(port, nil)
 	if err != nil{
 		log.Fatalln(err)
 	}
-	log.Println("HTTP server runs on ", port)
 }
