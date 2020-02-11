@@ -1,6 +1,9 @@
 package main
 
+import "log"
+
 func (r *Render) RenderAbout() error {
+	log.Println("Render about page")
 	content, err := readFile("./data/about.md")
 	aboutPage := r.NewPage("about.html", "", content)
 

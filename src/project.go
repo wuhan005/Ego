@@ -3,6 +3,7 @@ package main
 import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"log"
 	"path"
 	"sort"
 	"strings"
@@ -34,6 +35,7 @@ type Meta struct {
 }
 
 func (e *ego) LoadProject() error {
+	log.Println("Load projects")
 	projectList, err := ioutil.ReadDir("./data/project")
 	if err != nil {
 		return err
@@ -42,7 +44,7 @@ func (e *ego) LoadProject() error {
 	for _, project := range projectList {
 		e.Projects = append(e.Projects, NewProject(project.Name()))
 	}
-
+	log.Printf("Find %d project(s)\n", len(e.Projects))
 	// 初始化项目编程语言信息
 	for _, project := range e.Projects {
 		e.Language.AddProject(project)

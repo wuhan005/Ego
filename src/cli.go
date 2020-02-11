@@ -1,8 +1,42 @@
 package main
 
-type CLI struct {
+import (
+	"github.com/urfave/cli/v2"
+	"log"
+	"os"
+)
 
+type CLI struct {
+	app *cli.App
 }
-func (c *CLI) Init(){
-	// TODO
+
+func (e *ego) DoCLI() {
+	app := &cli.App{
+		Name: "Ego",
+		Action: func(c *cli.Context) error {
+			e.DoRender()
+			if c.String("s") != "" {
+				e.DoServer(c.String("s"))
+			}
+			return nil
+		},
+	}
+	e.CLI = new(CLI)
+	e.CLI.app = app
+	e.CLI.setFlag()
+
+	err := e.CLI.app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func (c *CLI) setFlag() {
+	c.app.Flags = []cli.Flag{
+		&cli.StringFlag{
+			Name:     "s",
+			Usage:    "启动 HTTP 服务器",
+			Required: false,
+		},
+	}
 }

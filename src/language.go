@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"path"
 )
 
@@ -22,6 +23,7 @@ func (l *Language) AddProject(project Project) {
 }
 
 func (r *Render) RenderLanguage() error {
+	log.Println("Render language page")
 	for lang, projects := range r.Ego.Language.List{
 		if err := r.renderLanguage(lang, projects); err != nil{
 			return err

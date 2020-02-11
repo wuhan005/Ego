@@ -2,6 +2,7 @@ package main
 
 type ego struct {
 	Config   *config
+	CLI      *CLI
 	Render   *Render
 	Projects []Project // 获取到的所有项目
 	Language *Language

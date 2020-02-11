@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -59,6 +60,7 @@ func (r *Render) LoadFunctions() error {
 }
 
 func (r *Render) RenderIndex() error {
+	log.Println("Render main page")
 	indexPage := r.NewPage("index.html", "", nil)
 
 	indexPage.Title = r.Ego.Config.Site.Title
@@ -85,6 +87,7 @@ func (r *Render) MoveAssets() error {
 }
 
 func (r *Render) RenderProjects() error {
+	log.Println("Render project(s) page")
 	err := os.MkdirAll("./public/project", os.ModePerm)
 	if err != nil {
 		return err
@@ -123,6 +126,5 @@ func (r *Render) renderProject(project Project) error {
 	}
 	// 项目首页 /project/Cube/index.html
 	mainPage.URL = path.Join("/project/", project.Name, "/index.html")
-	fmt.Println(mainPage.URL)
 	return mainPage.Save()
 }

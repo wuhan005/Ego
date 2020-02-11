@@ -20,7 +20,15 @@ func checkTemplates() error {
 	}
 
 	// 检查 layouts
+	log.Println("Check layouts")
 	err = isExist("./templates/layouts", true)
+	if err != nil {
+		return err
+	}
+
+	// 检查 data
+	log.Println("Check data")
+	err = isExist("./data/project", true)
 	if err != nil {
 		return err
 	}
