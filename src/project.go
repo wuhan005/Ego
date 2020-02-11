@@ -42,6 +42,9 @@ func (e *ego) LoadProject() error {
 	}
 	e.Projects = make([]Project, 0)
 	for _, project := range projectList {
+		if strings.HasPrefix(project.Name(), ".") || strings.HasPrefix(project.Name(), "_"){
+			continue
+		}
 		e.Projects = append(e.Projects, NewProject(project.Name()))
 	}
 	log.Printf("Find %d project(s)\n", len(e.Projects))
