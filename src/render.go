@@ -51,14 +51,6 @@ func (r *Render) LoadLayouts() error {
 	return nil
 }
 
-func (r *Render) LoadFunctions() error {
-	r.FunctionMaps = template.FuncMap{
-		"unescaped": unescaped,
-		"count":     count,
-	}
-	return nil
-}
-
 func (r *Render) RenderIndex() error {
 	log.Println("Render main page")
 	indexPage := r.NewPage("index.html", "", nil)

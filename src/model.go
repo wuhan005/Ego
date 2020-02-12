@@ -19,6 +19,7 @@ type site struct {
 
 type profile struct {
 	NickName string `toml:"nickname"`
+	GitHub   string `toml:"github"`
 	Site     string `toml:"site"`
 	Avatar   string `toml:"avatar"`
 	Intro    string `toml:"intro"`

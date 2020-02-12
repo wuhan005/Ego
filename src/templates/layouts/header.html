@@ -14,8 +14,8 @@
                 <at-menu-item name="/"><i class="icon icon-home"></i>{{ .SiteName }}</at-menu-item>
                 <at-submenu>
                     <template slot="title"><i class="icon icon-grid"></i>语言</template>
-                    {{ range $lang, $ := .Languages }}
-                        <at-menu-item name="/language/{{ $lang }}">{{ $lang }}</at-menu-item>
+                    {{ range $lang, $ := .LanguageTypes }}
+                        <at-menu-item name="/language/{{ $lang | urlencode }}">{{ $lang }}</at-menu-item>
                     {{ end }}
                 </at-submenu>
                 <at-menu-item name="/about.html"><i class="icon icon-user"></i>关于</at-menu-item>

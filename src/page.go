@@ -36,9 +36,10 @@ func (r *Render) NewPage(fileName string, templateName string, rawMarkdown []byt
 	// 公共参数
 	params := make(map[string]interface{})
 	params["SiteName"] = r.Ego.Config.Site.Title
-	params["Languages"] = r.Ego.Language.List
+	params["LanguageTypes"] = r.Ego.Language.List
 	// 个人信息
 	params["Avatar"] = r.Ego.Config.Profile.Avatar
+	params["GitHub"] = r.Ego.Config.Profile.GitHub
 	params["NickName"] = r.Ego.Config.Profile.NickName
 	params["Site"] = r.Ego.Config.Profile.Site
 	params["Intro"] = r.Ego.Config.Profile.Intro
