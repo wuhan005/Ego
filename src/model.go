@@ -14,7 +14,9 @@ type config struct {
 }
 
 type site struct {
-	Title string `toml:"title"`
+	Title  string `toml:"title"`
+	Footer string `toml:"footer"`
+	ICP    string `toml:"icp"`
 }
 
 type profile struct {

@@ -1,16 +1,21 @@
 {{ define "footer"}}
-        </div>
+    <div style="text-align: center; margin: 80px 0 30px 0;">
+        <hr>
+        <p>{{ .Footer }}</p>
+        <p style="font-size: 12px;"><a href="http://www.beian.miit.gov.cn/" target="_blank">{{ .ICP }}</a></p>
+    </div>
+    </div>
     </div>
     <script>
         new Vue({
             el: '#app',
-            methods:{
-                selectMenu(data){
+            methods: {
+                selectMenu(data) {
                     window.location.href = data
                 }
             },
         })
     </script>
-</body>
-</html>
+    </body>
+    </html>
 {{ end }}
