@@ -33,6 +33,7 @@ func (r *Render) RenderLanguage() error {
 }
 
 func (r *Render) renderLanguage(lang string, projects []*Project) error {
+	lang = symbol2text(lang)
 	langPage := r.NewPage(lang, "language.html", nil)
 	langPage.Title = fmt.Sprintf("%s 语言项目 - %s", lang, r.Ego.Config.Site.Title)
 
@@ -44,7 +45,6 @@ func (r *Render) renderLanguage(lang string, projects []*Project) error {
 		return err
 	}
 
-	// 项目首页 /project/Cube/index.html
 	langPage.URL = path.Join("/language/", lang, "/index.html")
 	return langPage.Save()
 }

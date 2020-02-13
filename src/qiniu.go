@@ -48,7 +48,13 @@ func (q *Qiniu) Upload() {
 
 	for _, filePath := range GetAllFiles("./public/") {
 		absPath, _ := filepath.Abs(filePath)
-		filePath = filePath[7:]		// 去除 public/
+		_, fileName := filepath.Split(filePath)
+		// 忽略文件
+		if fileName[0] == '.' || fileName[0] == '_'{
+			continue
+		}
+
+		filePath = filePath[7:] // 去除 public/
 
 		log.Printf("Upload file: %s\n", filePath)
 		err = q.uploadFile(absPath, filePath)
