@@ -15,13 +15,13 @@ func (e *ego) DoCLI() {
 		Name: "Ego",
 		Action: func(c *cli.Context) error {
 			e.DoRender()
-			if c.String("s") != "" {
-				e.DoServer(c.String("s"))
-			}
-
 			if c.IsSet("p"){
 				q := NewQiniu()
 				q.Upload()
+			}
+
+			if c.String("s") != "" {
+				e.DoServer(c.String("s"))
 			}
 			return nil
 		},
