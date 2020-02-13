@@ -97,3 +97,16 @@ func ParseMarkdown(content string) string {
 	output := blackfriday.Run([]byte(content))
 	return string(output)
 }
+
+func GetAllFiles(path string) []string {
+	files := make([]string, 0)
+	dir, _ := ioutil.ReadDir(path)
+	for _, file := range dir {
+		if file.IsDir() {
+			files = append(files, GetAllFiles(filepath.Join(path, file.Name()))...)
+		} else {
+			files = append(files, filepath.Join(path, file.Name()))
+		}
+	}
+	return files
+}

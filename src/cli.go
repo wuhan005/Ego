@@ -15,8 +15,14 @@ func (e *ego) DoCLI() {
 		Name: "Ego",
 		Action: func(c *cli.Context) error {
 			e.DoRender()
+			q := NewQiniu()
+			q.Upload()
 			if c.String("s") != "" {
 				e.DoServer(c.String("s"))
+			}
+
+			if c.IsSet("p"){
+
 			}
 			return nil
 		},
@@ -36,6 +42,11 @@ func (c *CLI) setFlag() {
 		&cli.StringFlag{
 			Name:     "s",
 			Usage:    "启动 HTTP 服务器",
+			Required: false,
+		},
+		&cli.StringFlag{
+			Name:     "p",
+			Usage:    "发布",
 			Required: false,
 		},
 	}
